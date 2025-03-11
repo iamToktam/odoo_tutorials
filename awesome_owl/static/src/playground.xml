@@ -2,13 +2,28 @@
 	<t t-name="awesome_owl.Playground">
 		<div>
 			<div>
-				<Counter/>
-				<Counter/>
+				<Counter onChange="incrementSum"/>
+				<Counter onChange="incrementSum"/>
+				<div class="m-3">
+					Sum is: <t t-esc="state.sum"/>
+				</div>
 			</div>
+			<hr></hr>
 
 			<div class="m-3">
-				<Card title="'Card 1'" content="safeContent"/>
-				<Card title="'Card 2'" content="unsafeContent"/>
+				<Card title="'Card 1'">
+					<span>content</span>
+				</Card>
+				<Card title="'Card 2'">
+					<Counter onChange.bind="incrementSum"/>
+				</Card>
+			</div>
+			<hr></hr>
+
+			<div class="m-3">
+				<span>
+					<TodoList/>
+				</span>
 			</div>
 
 		</div>
