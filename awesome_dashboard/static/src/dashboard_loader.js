@@ -12,3 +12,6 @@ class AwesomeDashboardLoader extends Component {
 }
 
 registry.category("actions").add("awesome_dashboard.dashboard", AwesomeDashboardLoader);
+
+
+// responsible for loading the assets bundle and then rendering the actual dashboard component.

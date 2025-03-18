@@ -4,9 +4,9 @@ import {Component, useState} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {Layout} from "@web/search/layout";
 import {useService} from "@web/core/utils/hooks";
-import {DashboardItem} from "@awesome_dashboard/dashboard_item/dashboard_item";
-import {PieChart} from "@awesome_dashboard/pie_chart/pie_chart";
-import {DashboardItemsDialog} from "@awesome_dashboard/dashboard_items_dialog/dashboard_items_dialog";
+import {DashboardItem} from "@awesome_dashboard/dashboard/dashboard_item/dashboard_item";
+import {PieChart} from "@awesome_dashboard/dashboard/pie_chart/pie_chart";
+import {DashboardItemsDialog} from "@awesome_dashboard/dashboard/dashboard_items_dialog/dashboard_items_dialog";
 
 class AwesomeDashboard extends Component {
 	static template = "awesome_dashboard.AwesomeDashboard";

@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
-import {NumberCard} from "@awesome_dashboard/number_card/number_card";
-import {PieChart} from "@awesome_dashboard/pie_chart/pie_chart";
+import {NumberCard} from "@awesome_dashboard/dashboard/number_card/number_card";
+import {PieChart} from "@awesome_dashboard/dashboard/pie_chart/pie_chart";
 import {registry} from "@web/core/registry";
 
 const items = [

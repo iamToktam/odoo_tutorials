@@ -19,6 +19,7 @@ export class PieChart extends Component {
         });
     }
 
+	// creating and updating the Chart.js
     renderChart() {
         if (!this.chartContext.el) return;
         if (this.chart) this.chart.destroy();
