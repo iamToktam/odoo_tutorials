@@ -20,6 +20,7 @@ class AwesomeDashboard(http.Controller):
             'nb_new_orders': the number of new orders, this month
             'total_amount': the total amount of orders, this month
         """
+        request.env['sale.order'].search([["order_line.product_id.name", "like", "%T-Shirt M%"]])
 
         return {
             'average_quantity': random.randint(4, 12),
