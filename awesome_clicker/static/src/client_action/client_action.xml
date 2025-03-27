@@ -1,0 +1,27 @@
+<templates xml:space="preserve">
+
+     <t t-name="awesome_clicker.ClickerClientAction">
+	     <div class="m-3">
+             <span>Clicks: <ClickerValue/> </span>
+		     <button class="btn btn-primary m-2"
+		             t-on-click="() => this.clickService.increment(9)">
+			     Increment
+		     </button>
+         </div>
+
+	     <div t-if="this.clickService.level >= 1" class="ms-1 mt-1">
+             <h2> Bots </h2>
+		     <div class="card">
+                 <div class="card-header">
+                     <t t-esc="this.clickService.clickBots"/>x ClickBots (10 clicks/10seconds)
+                 </div>
+			     <div class="card-body">
+                     <button t-on-click="() => this.clickService.buyClickBot()" class="btn btn-primary" t-att-disabled="this.clickService.clicks lt 1000">
+                         Buy ClickBot (1000 clicks)
+                     </button>
+                 </div>
+             </div>
+         </div>
+     </t>
+
+ </templates>
