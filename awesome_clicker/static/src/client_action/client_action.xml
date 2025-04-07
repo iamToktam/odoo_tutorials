@@ -28,7 +28,7 @@
              </div>
          </div>
 	     <div t-if="this.clickService.level >= 3" class="ms-1 mt-1">
-             <h2> Power multiplier </h2>
+             <h2> Power Multiplier </h2>
              <div class="d-flex flex-row">
                  <div class="card me-3">
                      <div class="card-header">
@@ -37,7 +37,7 @@
                      </div>
                      <div class="card-body">
                          <button t-on-click="() => this.clickService.buyMultiplier()" class="btn btn-primary" t-att-disabled="this.clickService.clicks lt 50000">
-                             Buy Power Multiplier (50000 clicks)
+                             Buy Power Multiplier (50K clicks)
                          </button>
                      </div>
                  </div>
