@@ -4,7 +4,7 @@
 	     <div class="m-3">
              <span>Clicks: <ClickerValue/> </span>
 		     <button class="btn btn-primary m-2"
-		             t-on-click="() => this.clickService.increment(499)">
+		             t-on-click="() => this.clickService.increment(9999)">
 			     Increment
 		     </button>
          </div>
@@ -15,7 +15,7 @@
                  <t t-foreach="this.clickService.bots" t-as="bot" t-key="bot">
                      <div t-if="bot_value.level lte this.clickService.level" class="card me-3">
                          <div class="card-header">
-                             <t t-esc="bot_value.purchased"/>x <t t-esc="bot"/> (<t t-esc="bot_value.increment"/> clicks/10seconds)
+                             <t t-esc="bot_value.purchased"/>x <t t-esc="bot"/> (<t t-esc="bot_value.increment * this.clickService.multiplier"/> clicks/10seconds)
 	                         <i class="fa fa-android"></i>
                          </div>
 	                     <div class="card-body">
@@ -25,6 +25,22 @@
                          </div>
                      </div>
                  </t>
+             </div>
+         </div>
+	     <div t-if="this.clickService.level >= 3" class="ms-1 mt-1">
+             <h2> Power multiplier </h2>
+             <div class="d-flex flex-row">
+                 <div class="card me-3">
+                     <div class="card-header">
+                         <t t-esc="this.clickService.multiplier"/>x
+                         <i class="fa fa-superpowers"></i>
+                     </div>
+                     <div class="card-body">
+                         <button t-on-click="() => this.clickService.buyMultiplier()" class="btn btn-primary" t-att-disabled="this.clickService.clicks lt 50000">
+                             Buy Power Multiplier (50000 clicks)
+                         </button>
+                     </div>
+                 </div>
              </div>
          </div>
      </t>
