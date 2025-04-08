@@ -63,7 +63,6 @@ export class ClickerModel extends Reactive {
 		}, 30000);
 	}
 
-
 	// Buy function
 
 	buyMultiplier() {
@@ -121,6 +120,21 @@ export class ClickerModel extends Reactive {
 		this.clicks -= this.trees[name].price;
 		this.trees[name].purchased += 1;
 	}
+
+	// The game situation is stable
+	toJSON() {
+		const json = Object.assign({}, this);
+		delete json["bus"];
+		return json;
+
+	}
+
+	static fromJSON(json) {
+		const clicker = new ClickerModel();
+		const clickerInstance = Object.assign(clicker, json);
+		return clickerInstance;
+	}
+	// END. The game situation is stable
 
 	get milestones() {
 		return [
