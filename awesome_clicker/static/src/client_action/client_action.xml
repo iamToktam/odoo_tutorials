@@ -3,7 +3,7 @@
      <t t-name="awesome_clicker.ClickerClientAction">
          <div class="ms-1 mt-1 mb-2">
              <span>Clicks: <ClickerValue/> </span>
-	         <button class="btn btn-primary ms-1" t-on-click="() => this.clickService.increment(99999)">
+	         <button class="btn btn-primary ms-1" t-on-click="() => this.clickService.increment(9)">
                  Increment
              </button>
          </div>
