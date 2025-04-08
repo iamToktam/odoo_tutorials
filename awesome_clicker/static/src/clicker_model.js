@@ -40,11 +40,18 @@ export class ClickerModel extends Reactive {
 				produce: "cherry",
 				purchased: 0,
 			},
+			peachTree: {
+				price: 1500000,
+				level: 5,
+				produce: "peach",
+				purchased: 0,
+			},
 		}
 
 		this.fruits = {
 			pear: 0,
 			cherry: 0,
+			peach: 0,
 		}
 
 		this.multiplier = 1
@@ -144,7 +151,7 @@ export class ClickerModel extends Reactive {
 			{clicks: 1000, unlock: "clickBot"},
 			{clicks: 5000, unlock: "bigBot"},
 			{clicks: 100000, unlock: "power multiplier"},
-			{clicks: 1000000, unlock: "pear tree & cherry tree"}
+			{clicks: 1000000, unlock: "pear tree & cherry tree & peach tree"}
 		];
 	}
 }
