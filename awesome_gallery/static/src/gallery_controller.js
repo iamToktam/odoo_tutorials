@@ -2,9 +2,14 @@
 
 import {Layout} from "@web/search/layout";
 import {useService} from "@web/core/utils/hooks";
-import {KeepLast} from "@web/core/utils/concurrency";
+
 import {Component, onWillStart, onWillUpdateProps, useState} from "@odoo/owl";
+
 import {standardViewProps} from "@web/views/standard_view_props";
+
+import {GalleryModel} from "./gallery_model";
+import {GalleryRenderer} from "./gallery_renderer";
+
 
 export class GalleryController extends Component {
     static template = "awesome_gallery.GalleryController";
@@ -13,43 +18,30 @@ export class GalleryController extends Component {
         archInfo: Object,
 
     };
-    static components = {Layout};
+    static components = {Layout, GalleryRenderer};
 
     setup() {
         // ارتباط با سرویس برای خواندن و فرستادن داده
         this.orm = useService("orm");
 
-        // ایجاد یک state
-        this.images = useState({data: []});
-
-        this.keeplast = new KeepLast();
+        this.model = useState(
+            new GalleryModel(
+                this.orm,
+                this.props.resModel,
+                this.props.archInfo,
+            )
+        );
 
         // بارگذاری اولیه
         onWillStart(async () => {
-            const {records} = await this.loadImages(this.props.domain);
-            this.images.data = records;
+            await this.model.load(this.props.domain);
         });
 
         onWillUpdateProps(async (nextProps) => {
             if (JSON.stringify(nextProps.domain) !== JSON.stringify(this.props.domain)) {
-                const {records} = await this.loadImages(nextProps.domain);
-                this.images.data = records;
+                await this.model.load(nextProps.domain);
             }
         });
-    }
-
-    loadImages(domain) {
-        return this.keeplast.add(
-            this.orm.webSearchRead(this.props.resModel, domain, {
-                limit: this.props.archInfo.limit,
-                specification: {
-                    [this.props.archInfo.imageField]: {},
-                },
-                context: {
-                    bin_size: true,
-                }
-            })
-        );
     }
 
 }
