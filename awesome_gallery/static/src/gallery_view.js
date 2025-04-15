@@ -23,4 +23,6 @@ export const galleryView = {
 	},
 };
 
+// add new view in the system
+
 registry.category("views").add("gallery", galleryView);

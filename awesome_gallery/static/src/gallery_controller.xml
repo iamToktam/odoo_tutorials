@@ -3,7 +3,15 @@
 <templates xml:space="preserve">
      <t t-name="awesome_gallery.GalleryController">
 
-         <Layout display="props.display"/>
+         <Layout display="props.display">
+             <t t-foreach="images.data" t-as="image" t-key="image.id">
+                 <div class="m-3">
+                     <p> id: <t t-esc="image.id"/> </p>
+                     <p> <t t-esc="image[props.archInfo.imageField]"/> </p>
+                 </div>
+
+             </t>
+         </Layout>
 
      </t>
 </templates>
