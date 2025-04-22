@@ -4,7 +4,10 @@
              datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 	<rng:define name="gallery">
 		<rng:element name="gallery">
+			<!--	اجباری		-->
 			<rng:attribute name="image_field"/>
+
+			<!--	اختیاری		-->
 
 			<rng:optional>
 				<rng:attribute name="tooltip_field"/>
