@@ -7,6 +7,8 @@ import {Component, onWillStart, onWillUpdateProps, useState} from "@odoo/owl";
 
 import {standardViewProps} from "@web/views/standard_view_props";
 
+import {usePager} from "@web/search/pager_hook";
+
 
 export class GalleryController extends Component {
 	static template = "awesome_gallery.GalleryController";
@@ -30,6 +32,20 @@ export class GalleryController extends Component {
 				this.props.fields,
 				this.props.archInfo,
 			)
+		);
+
+		usePager(() => {
+				return {
+					offset: this.model.pager.offset,
+					limit: this.model.pager.limit,
+					total: this.model.recordsLength,
+					onUpdate: async ({offset, limit}) => {
+						this.model.pager.offsrt = offset;
+						this.model.pager.limit = limit;
+						await this.model.load(this.props.domain);
+					},
+				};
+			}
 		);
 
 		// بارگذاری اولیه
