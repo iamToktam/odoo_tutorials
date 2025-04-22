@@ -25,6 +25,7 @@ export class GalleryController extends Component {
 		// ارتباط با سرویس برای خواندن و فرستادن داده
 		this.orm = useService("orm");
 
+		// ساخت یک شی از مدل گالری
 		this.model = useState(
 			new this.props.Model(
 				this.orm,
@@ -34,6 +35,7 @@ export class GalleryController extends Component {
 			)
 		);
 
+		// ایجاد صفحه بندی
 		usePager(() => {
 				return {
 					offset: this.model.pager.offset,
@@ -53,11 +55,17 @@ export class GalleryController extends Component {
 			await this.model.load(this.props.domain);
 		});
 
+		// بعد از فیلتر دیتای مجدد میگیره
 		onWillUpdateProps(async (nextProps) => {
 			if (JSON.stringify(nextProps.domain) !== JSON.stringify(this.props.domain)) {
 				await this.model.load(nextProps.domain);
 			}
 		});
+	}
+
+	// وقتی کاربر یه عکس جدید بده، میره روی همون رکورد آپدیت می‌کنه
+	async onImageUpload(record_id, image_binary) {
+		this.model.uploadImage(record_id, image_binary, this.props.domain);
 	}
 
 }
