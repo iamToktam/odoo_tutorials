@@ -2,20 +2,30 @@
 <rng:grammar xmlns:rng="http://relaxng.org/ns/structure/1.0"
              xmlns:a="http://relaxng.org/ns/annotation/1.0"
              datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
 	<rng:define name="gallery">
 		<rng:element name="gallery">
+
 			<!--	اجباری		-->
 			<rng:attribute name="image_field"/>
 
-			<!--	اختیاری		-->
-
+			<!--	 اختیاری با حداقل یکی		-->
 			<rng:optional>
 				<rng:attribute name="tooltip_field"/>
 			</rng:optional>
-
 			<rng:optional>
 				<rng:attribute name="limit"/>
 			</rng:optional>
+
+			<!--	 اختیاری با حداقل صفر		-->
+			<rng:zeroOrMore>
+				<rng:choice>
+					<rng:element name="field">
+						<rng:attribute name="name"/>
+					</rng:element>
+					<rng:ref name="tooltip-template"/>
+				</rng:choice>
+			</rng:zeroOrMore>
 
 		</rng:element>
 	</rng:define>
@@ -25,4 +35,33 @@
 			<rng:ref name="gallery"/>
 		</rng:choice>
 	</rng:start>
+
+	<!-- تعریف تگ جدید tooltip-template -->
+	<rng:define name="tooltip-template">
+		<rng:element name="tooltip-template">
+			<rng:zeroOrMore>
+				<rng:text/>
+				<rng:ref name="any"/>
+			</rng:zeroOrMore>
+		</rng:element>
+	</rng:define>
+
+	<!-- هر اسم تگی اوکیه -->
+	<rng:define name="any">
+		<rng:element>
+			<rng:anyName/>
+			<rng:zeroOrMore>
+				<!-- داخل تگ -->
+				<rng:choice>
+					<rng:attribute>
+						<rng:anyName/>
+					</rng:attribute>
+					<rng:text/>
+					<rng:ref name="any"/>
+				</rng:choice>
+
+			</rng:zeroOrMore>
+		</rng:element>
+	</rng:define>
+
 </rng:grammar>
